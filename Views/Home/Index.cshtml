@@ -1,0 +1,28 @@
+﻿@model Spin.ViewModels.Home.IndexViewModel
+@{
+    ViewBag.Title = "Home";
+}
+
+<div class="jumbotron text-center">
+    <h1>Spin</h1>
+    <p class="lead">The best place for your favorite artists</p>
+</div>
+
+<div class="row" id="MainIndexRow">
+    <div class="col-md-6 text-center">
+        <h2>Recent artists</h2>
+        @foreach (var artist in Model.RecentArtists)
+        {
+            <p>@artist.Name</p>
+        }
+        <p><a class="btn btn-default" href="@Url.RouteUrl("AllArtists")">Explore All Artists</a></p>
+    </div>
+    <div class="col-md-6 text-center">
+        <h2>Recent Albums</h2>
+        @foreach (var album in Model.RecentAlbums)
+        {
+            <p>@album.Name</p>
+        }
+        <p><a class="btn btn-default" href="@Url.RouteUrl("AllAlbums")">Explore All Albums</a></p>
+    </div>
+</div>

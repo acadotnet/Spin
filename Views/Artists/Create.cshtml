@@ -1,0 +1,43 @@
+﻿@model Spin.ViewModels.EditViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row">
+    <div class="col p-4 text-center">
+        <h2 class="page-header">Add a favorite artist</h2>
+    </div>
+</div>
+
+@using (Html.BeginForm("Create", "Artists", new { @class = "form" }))
+{
+    <br />
+    <div class="form-group">
+        <div class="row">
+            <div id="artistContainer" class="col-md-5 col-md-offset-1">
+                @Html.LabelFor(n => n.Artist.Name, new { @id = "artistLabel"})
+                @Html.TextBoxFor(n => n.Artist.Name, new { @class = "form-control", @id = "artistText" })
+            </div>
+            <div id="albumContainer" class="col-md-5 col-md-offset-1">
+                @Html.LabelFor(n => n.Album.Name, new { @id = "albumLabel" })
+                @Html.TextBoxFor(n => n.Album.Name, new { @class = "form-control", @id = "albumText" })
+            </div>
+        </div>
+        <div class="row">
+            <div id="genreContainer" class="col-md-5 col-md-offset-1">
+                @Html.LabelFor(n => n.Genre.Name, new { @id = "genreLabel" })
+                @Html.TextBoxFor(n => n.Genre.Name, new { @class = "form-control", @id = "genreText" })
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-7 col-md-offset-5">
+            <button class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+    <br />
+}
+<br />

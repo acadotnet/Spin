@@ -1,0 +1,54 @@
+﻿@using Newtonsoft.Json
+@model Spin.Models.Album
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+
+<div class="row">
+    <div class="panel panel-success">
+        <div id="trackList" class="panel-body">
+        </div>
+        <div class="panel-footer">
+            <input id="songName" class="form-control" type="text" placeholder="Song name"/>
+            <input id="songLength" class="form-control" type="text" placeholder="Song length"/>
+            <button id="addTrack" class="btn btn-success">Add Song</button>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+
+        var songs = '@Html.Raw(JsonConvert.SerializeObject(Model.Songs.Select(h => new { Id = h.Id, Name = h.Name, SongLength = h.SongLength }).ToArray(), new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml }))';
+        var ul = $("<ul class=\"list-group\">");
+
+        $.each(JSON.parse(songs), function(i, songs) {
+            ul.append("<li class=\"list-group-item\">" + songs.Name + songs.SongLength + "</li>");
+        });
+
+        $("#trackList").append(ul);
+
+        $('#addTrack').click(function () {
+            $.ajax({
+                url: '@Url.RouteUrl("AddSongAjax")',
+                method: 'post',
+                data: {
+                    AlbumId: @Model.Id,
+                    Name: $('#songName').val(),
+                    SongLength: $('#songLength').val()
+                },
+                success: function (data) {
+                    toastr.success("Song info added")
+                    ul.append("<li class=\"list-group-item\">" + data.Name + ' : ' + data.SongLength + "</li>");
+                    $('#songName').val('')
+                    $('#songLength').val('')
+                },
+                error: function (data) {
+                    console.warn("Didn't work")
+                }
+            })
+        })
+    </script>
+    }
