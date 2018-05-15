@@ -25,7 +25,7 @@
         var ul = $("<ul class=\"list-group\">");
 
         $.each(JSON.parse(songs), function(i, songs) {
-            ul.append("<li class=\"list-group-item\">" + songs.Name + songs.SongLength + "</li>");
+            ul.append("<li class=\"list-group-item\">" + songs.Name + ' : ' + songs.SongLength + "</li>");
         });
 
         $("#trackList").append(ul);
