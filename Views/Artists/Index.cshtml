@@ -26,7 +26,7 @@
                         }
                     </td>
                     <td><a href="@Url.RouteUrl("ArtistDetails", new { id = artist.Id })" class="btn btn-primary">Details</a></td>
-                    <td><a href="#" class="btn btn-danger">Delete</a></td>
+                    <td><a href="@Url.RouteUrl("ArtistDelete", new { id = artist.Id })" class="btn btn-danger">Delete</a></td>
                 </tr>
             }
         </tbody>

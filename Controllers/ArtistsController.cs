@@ -89,5 +89,16 @@ namespace Spin.Controllers
 
             return View(artist);
         }
+
+        [Route("Delete/{id}", Name = "ArtistDelete")]
+        public ActionResult Delete(int id)
+        {
+            var artistToDelete = _context.Artists.FirstOrDefault(a => a.Id == id);
+
+            _context.Artists.Remove(artistToDelete);
+            _context.SaveChanges();
+
+            return View();
+        }
     }
 }
