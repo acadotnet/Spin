@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Spin.Data;
@@ -18,6 +19,7 @@ namespace Spin.Controllers
         public AlbumsController()
         {
             _context = new SpinContext();
+
         }
 
         [Route("", Name = "AllAlbums")]
@@ -34,6 +36,21 @@ namespace Spin.Controllers
             var albums = _context.Albums.Include(s => s.Songs).FirstOrDefault(a => a.Id == id);
 
             return View(albums);
+        }
+        
+        [HttpPost]
+        [Route("Delete/{id}", Name = "DeleteSongAjax")]
+        public ActionResult Delete(int id)
+        {
+            var songToDelete = _context.Songs.FirstOrDefault(s => s.Id == id);
+            if (songToDelete != null)
+            {
+                _context.Songs.Remove(songToDelete);
+                _context.SaveChanges();
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
         }
     }
 }
