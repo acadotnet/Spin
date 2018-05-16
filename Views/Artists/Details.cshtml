@@ -34,36 +34,3 @@
         </tbody>
     </table>
 </div>
-@*<div class="row">
-    <div class="col-md-8 col-md-offset-4">
-        <input id="song-name" class="form-control" type="text" placeholder="Add a song" />
-    </div>
-</div>
-<br />
-<div class="row">
-    <div class="col-md-7 col-md-offset-5">
-        <button id="add-song" class="btn btn-success">Add it!!</button>
-    </div>
-</div>
-
-@section scripts{
-    <script>
-        $("#add-song").click(function () {
-            $.ajax({
-                method: 'post',
-                url: @Url.RouteUrl(""),
-                data: {
-                    ArtistId: @Model.Id,
-                    Name: $("#song-name").val()
-                },
-                success: function (data) {
-                    $("#songs ul").append("<li class=\"list-group-item\">" + data.Name + "</li>");
-                    $('#song-name').val('');
-                },
-                error: function (data) {
-                    console.warn("The post failed")
-                }
-            })
-        })
-    </script>
-    }*@

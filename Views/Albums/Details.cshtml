@@ -24,11 +24,36 @@
         var songs = '@Html.Raw(JsonConvert.SerializeObject(Model.Songs.Select(h => new { Id = h.Id, Name = h.Name, SongLength = h.SongLength }).ToArray(), new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml }))';
         var ul = $("<ul class=\"list-group\">");
 
-        $.each(JSON.parse(songs), function(i, songs) {
-            ul.append("<li class=\"list-group-item\">" + songs.Name + ' : ' + songs.SongLength + "</li>");
+        $.each(JSON.parse(songs), function (i, songs) {
+            ul.append("<li class=\"list-group-item\">" + songs.Name + ' : ' + songs.SongLength + "<a class=\"btn btn-sm pull-right delete-hobby\" data-songs-id=\"" + songs.Id + "\">Delete</a></li>");
         });
 
         $("#trackList").append(ul);
+
+        $('.delete-hobby').click(function () {
+            var songsId = $(this).data("songs-id");
+
+            // Call Ajax method with songId
+            $.ajax({
+                // Delete song from controller (server)
+                url: '@Url.RouteUrl("DeleteSongAjax")',
+                method: 'post',
+                data: {
+                    Id: songsId,
+                    Name: $('#songName').val(),
+                    SongLength: $('#songLength').val()
+                },
+                success: function (data) {
+                    // Toastr a success or error message
+                    toastr.success("Song Deleted")
+                    // Remove the element from HTML markup
+                    ul.remove("<li class=\"list-group-item\">" + data.Name + ' : ' + data.SongLength + "</li>");
+                },
+                error: function (data) {
+                    toastr.error("There was a problem")
+                }
+            })
+        });
 
         $('#addTrack').click(function () {
             $.ajax({
@@ -46,7 +71,7 @@
                     $('#songLength').val('')
                 },
                 error: function (data) {
-                    console.warn("Didn't work")
+                    toastr.error("There was a problem")
                 }
             })
         })
