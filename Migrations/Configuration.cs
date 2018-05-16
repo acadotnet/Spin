@@ -47,7 +47,7 @@ namespace Spin.Migrations
                 Id = 1,
                 Name = "NANANA",
                 AlbumId = album.Id,
-                SongLength = 4.00M
+                SongLength = "4:00"
             };
 
             //context.Artists.AddOrUpdate(artist);

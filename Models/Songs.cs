@@ -13,6 +13,6 @@ namespace Spin.Models
         public Album Album { get; set; }
         [Display(Name = "Song Name")]
         public string Name { get; set; }
-        public decimal SongLength { get; set; }
+        public string SongLength { get; set; }
     }
 }
