@@ -13,6 +13,8 @@ namespace Spin.Models
         [Required]
         [Display(Name="Album Name")]
         public string Name { get; set; }
+        [Display(Name = "Album Image Url")]
+        public string AlbumImageURL { get; set; }
         public ICollection<Songs> Songs { get; set; }
         public ICollection<AlbumGenre> AlbumGenre { get; set; }
         public Artist Artist { get; set; }

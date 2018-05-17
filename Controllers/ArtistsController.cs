@@ -41,26 +41,53 @@ namespace Spin.Controllers
             var album = new Album
             {
                 Name = model.Album.Name,
-                ArtistId = model.Album.Id
+                ArtistId = model.Album.Id,
+                AlbumImageURL = model.Album.AlbumImageURL
             };
 
-            //var genre = new Genre
-            //{
-            //    Name = model.Genre.Name,
-            //    AlbumId = model.Album.Id
-            //};
+            var genre = new Genre
+            {
+                Name = model.Genre.Name
+            };
 
             var artist = new Artist
             {
-                Name = model.Artist.Name
+                Name = model.Artist.Name,
+                ArtistImageURL = model.Artist.ArtistImageURL
             };
 
             _context.Artists.Add(artist);
             _context.Albums.Add(album);
-            //_context.Genres.Add(genre);
+            _context.Genres.Add(genre);
             _context.SaveChanges();
 
             return RedirectToRoute("ArtistDetails", new { Id = artist.Id });
+        }
+
+        [Route("Edit/{id}", Name = "ArtistEdit")]
+        public ActionResult Edit(int id)
+        {
+            var artistToEdit = _context.Artists.FirstOrDefault(a => a.Id == id);
+
+            return View(artistToEdit);
+        }
+
+        [HttpPost]
+        [Route("Edit/{id}", Name = "ArtistEditPost")]
+        public ActionResult Edit(Artist model)
+        {
+            var artist = _context.Artists.FirstOrDefault(c => c.Id == model.Id);
+            if (artist == null)
+            {
+                return HttpNotFound();
+            }
+
+            artist.Name = model.Name;
+            artist.ArtistImageURL = model.ArtistImageURL;
+
+            _context.SaveChanges();
+
+            return RedirectToRoute("ArtistDetails");
         }
 
         [HttpPost]

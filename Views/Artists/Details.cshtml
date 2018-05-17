@@ -5,20 +5,17 @@
 
 @Html.HiddenFor(a => a.Id)
 <div class="row">
-    <div class="text-center">
-        <h2>Details</h2>
+    <div class="col text-center">
+        <h1><em>@Model.Name</em></h1>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-6">
-        <p>@Model.Name</p>
-    </div>
-</div>
+<br />
 <br />
 <div class="row">
     <table class="table">
         <thead>
             <tr>
+                <th></th>
                 <th>Name</th>
                 <th>Action</th>
             </tr>
@@ -27,10 +24,16 @@
             <tr>
                 @foreach (var album in Model.Albums)
                 {
-                    <td>@album.Name</td>
-                    <td><a href="@Url.RouteUrl("AlbumDetails", new { id = album.Id})" class="btn btn-success">Album Details</a></td>
+                    <td><img src="@album.AlbumImageURL" class="img-responsive img-rounded" /></td>
+                    <td><a href="@Url.RouteUrl("AlbumDetails", new { id = album.Id })">@album.Name</a></td>
+                    <td>
+                        <a href="@Url.RouteUrl("ArtistEdit")" class="btn btn-success">Edit Artist</a>
+                    </td>
                 }
             </tr>
         </tbody>
+        <tfoot>
+            <a href="@Url.RouteUrl("AddAlbum")" class="btn btn-success">Add Album</a>
+        </tfoot>
     </table>
 </div>

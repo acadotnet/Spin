@@ -1,0 +1,37 @@
+﻿@model Spin.Models.Artist
+@{
+    ViewBag.Title = "Add";
+}
+
+<div class="row">
+    <div class="col">
+        <h2>Add</h2>
+    </div>
+</div>
+
+@using (Html.BeginForm("Add", "Albums", new { @class = "form" }))
+{
+    <br />
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-1">
+                @*@Html.LabelFor(n => n., new { @id = "albumLabel" })
+                @Html.TextBoxFor(n => n.Name, new { @class = "form-control", @id = "albumText" })*@
+            </div>
+            <br />
+            <div class="col-md-5 col-md-offset-1">
+                @*@Html.LabelFor(n => n.ArtistImageURL, new { @id = "albumImageLabel" })
+                @Html.TextBoxFor(n => n.ArtistImageURL, new { @class = "form-control", @id = "albumImageText" })*@
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-7 col-md-offset-5">
+            <button class="btn btn-primary">Add Album</button>
+        </div>
+    </div>
+    <br />
+}

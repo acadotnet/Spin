@@ -189,6 +189,14 @@
     <Compile Include="Migrations\201805151259491_GenreSetBackBeforeLastUpdate.Designer.cs">
       <DependentUpon>201805151259491_GenreSetBackBeforeLastUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805162111294_UpdatingSongFromDecToString.cs" />
+    <Compile Include="Migrations\201805162111294_UpdatingSongFromDecToString.Designer.cs">
+      <DependentUpon>201805162111294_UpdatingSongFromDecToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805162309439_ImageURLsForArtistAndAlbumsAdded.cs" />
+    <Compile Include="Migrations\201805162309439_ImageURLsForArtistAndAlbumsAdded.Designer.cs">
+      <DependentUpon>201805162309439_ImageURLsForArtistAndAlbumsAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumGenre.cs" />
@@ -217,6 +225,7 @@
     </Content>
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include=".gitignore" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -247,6 +256,9 @@
     <Content Include="Views\Albums\Index.cshtml" />
     <Content Include="Views\Artists\Create.cshtml" />
     <Content Include="Views\Albums\Details.cshtml" />
+    <Content Include="Views\Artists\Delete.cshtml" />
+    <Content Include="Views\Artists\Edit.cshtml" />
+    <Content Include="Views\Albums\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805091102414_InitialMigration.resx">
@@ -269,6 +281,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805151259491_GenreSetBackBeforeLastUpdate.resx">
       <DependentUpon>201805151259491_GenreSetBackBeforeLastUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805162111294_UpdatingSongFromDecToString.resx">
+      <DependentUpon>201805162111294_UpdatingSongFromDecToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805162309439_ImageURLsForArtistAndAlbumsAdded.resx">
+      <DependentUpon>201805162309439_ImageURLsForArtistAndAlbumsAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

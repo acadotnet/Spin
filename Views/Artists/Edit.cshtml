@@ -1,0 +1,32 @@
+﻿@model Spin.Models.Artist
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row">
+    <div class="col p-4 text-center">
+        <h2 class="page-header">Edit Artist</h2>
+    </div>
+</div>
+
+@using (Html.BeginForm("Edit", "Artists", new { @class = "form" }))
+{
+    <br />
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-1">
+                @Html.LabelFor(n => n.Name, new { @id = "artistLabel" })
+                @Html.TextBoxFor(n => n.Name, new { @class = "form-control", @placeholder = "Enter artist name", @id = "artistText" })
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                @Html.LabelFor(n => n.ArtistImageURL, new { @id = "artistImageLabel" })
+                @Html.TextBoxFor(n => n.ArtistImageURL, new { @class = "form-control", @id = "artistImageText" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7 col-md-offset-5">
+            <button class="btn btn-primary">Save Changes</button>
+        </div>
+    </div>
+}

@@ -12,6 +12,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th></th>
                 <th>Album</th>
                 <th>Genre</th>
                 <th>Actions</th>
@@ -20,17 +21,17 @@
         <tbody>
             @foreach (var album in Model)
             {
-                <tr>
-                    <td>@album.Name</td>
-                    <td>
-                        @foreach (var genre in album.AlbumGenre)
-                        {
-                            <span>@genre.Genre.Name</span>
-                        }
-                    </td>
-                    <td><a href="@Url.RouteUrl("AlbumDetails", new { id = album.Id })" class="btn btn-primary">Details</a></td>
-                    <td><a href="#" class="btn btn-danger">Delete</a></td>
-                </tr>
+            <tr>
+                <td><img src="@album.AlbumImageURL" class="img-responsive img-rounded" /></td>
+                <td><a href="@Url.RouteUrl("AlbumDetails", new { id = album.Id })">@album.Name</a></td>
+                <td>
+                    @foreach (var genre in album.AlbumGenre)
+                    {
+                        <p>@genre.Genre.Name</p>
+                    }
+                </td>
+                <td><a href="#" class="btn btn-danger">Delete</a></td>
+            </tr>
             }
         </tbody>
     </table>

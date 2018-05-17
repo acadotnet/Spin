@@ -3,9 +3,16 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>@Model.Name</h2>
-
+<div class="page-header text-center">
+    <div class="col">
+        <h1>@Model.Name</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <img src="@Model.AlbumImageURL" class="img-responsive img-rounded detailImage" />
+    </div>
+</div>
 <div class="row">
     <div class="panel panel-success">
         <div id="trackList" class="panel-body">

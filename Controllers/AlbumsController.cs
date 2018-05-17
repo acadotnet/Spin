@@ -19,7 +19,6 @@ namespace Spin.Controllers
         public AlbumsController()
         {
             _context = new SpinContext();
-
         }
 
         [Route("", Name = "AllAlbums")]
@@ -28,6 +27,31 @@ namespace Spin.Controllers
             var albums = _context.Albums.Include(g => g.AlbumGenre.Select(n => n.Genre)).ToList();
 
             return View(albums);
+        }
+
+        [Route("Add/{id}", Name = "AddAlbum")]
+        public ActionResult Add(int id)
+        {
+            var artist = _context.Artists.FirstOrDefault(a => a.Id == id);
+
+            return View(artist);
+        }
+
+        [HttpPost]
+        [Route("Add/{id}", Name = "AddAlbumPost")]
+        public ActionResult Add(EditViewModel model)
+        {
+            var album = new Album
+            {
+                Name = model.Album.Name,
+                AlbumImageURL = model.Album.AlbumImageURL,
+                ArtistId = model.Artist.Id
+            };
+
+            _context.Albums.Add(album);
+            _context.SaveChanges();
+
+            return RedirectToRoute("ArtistDetails", new { id = model.Artist.Id });
         }
 
         [Route("Details/{id}", Name = "AlbumDetails")]

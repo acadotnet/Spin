@@ -14,19 +14,31 @@
     <br />
     <div class="form-group">
         <div class="row">
-            <div id="artistContainer" class="col-md-5 col-md-offset-1">
+            <div class="col-md-5 col-md-offset-1">
                 @Html.LabelFor(n => n.Artist.Name, new { @id = "artistLabel"})
                 @Html.TextBoxFor(n => n.Artist.Name, new { @class = "form-control", @id = "artistText" })
             </div>
-            <div id="albumContainer" class="col-md-5 col-md-offset-1">
+            <br />
+            <div class="col-md-5 col-md-offset-1">
                 @Html.LabelFor(n => n.Album.Name, new { @id = "albumLabel" })
                 @Html.TextBoxFor(n => n.Album.Name, new { @class = "form-control", @id = "albumText" })
             </div>
         </div>
         <div class="row">
-            <div id="genreContainer" class="col-md-5 col-md-offset-1">
+            <div class="col-md-5 col-md-offset-1">
                 @Html.LabelFor(n => n.Genre.Name, new { @id = "genreLabel" })
                 @Html.TextBoxFor(n => n.Genre.Name, new { @class = "form-control", @id = "genreText" })
+            </div>
+            <br />
+            <div class="col-md-5 col-md-offset-1">
+                @Html.LabelFor(n => n.Album.AlbumImageURL, new { @id = "albumImageLabel" })
+                @Html.TextBoxFor(n => n.Album.AlbumImageURL, new { @class = "form-control", @id = "albumImageText" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-md-offset-1">
+                @Html.LabelFor(n => n.Artist.ArtistImageURL, new { @id = "artistImageLabel" })
+                @Html.TextBoxFor(n => n.Artist.ArtistImageURL, new { @class = "form-control", @id = "artistImageText" })
             </div>
         </div>
         <br />
@@ -35,7 +47,7 @@
     <br />
     <div class="row">
         <div class="col-md-7 col-md-offset-5">
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary">Create</button>
         </div>
     </div>
     <br />
