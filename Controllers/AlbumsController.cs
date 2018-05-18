@@ -8,23 +8,25 @@ using System.Web.Mvc;
 using Spin.Data;
 using Spin.Models;
 using Spin.ViewModels;
+using Spin.Services.Interfaces;
 
 namespace Spin.Controllers
 {
     [RoutePrefix("Albums")]
     public class AlbumsController : Controller
     {
-        public SpinContext _context;
+        private readonly SpinContext _context;
+        private readonly IAlbum _albumService;
 
-        public AlbumsController()
+        public AlbumsController(IAlbum albumService)
         {
-            _context = new SpinContext();
+            _albumService = albumService;
         }
 
         [Route("", Name = "AllAlbums")]
         public ActionResult Index()
         {
-            var albums = _context.Albums.Include(g => g.AlbumGenre.Select(n => n.Genre)).ToList();
+            var albums = _albumService.GetAllAlbums();
 
             return View(albums);
         }
@@ -32,7 +34,7 @@ namespace Spin.Controllers
         [Route("Add/{id}", Name = "AddAlbum")]
         public ActionResult Add(int id)
         {
-            var artist = _context.Artists.FirstOrDefault(a => a.Id == id);
+            var artist = _context.Artists.Include(n => n.Albums).FirstOrDefault(a => a.Id == id);
 
             return View(artist);
         }
@@ -57,7 +59,7 @@ namespace Spin.Controllers
         [Route("Details/{id}", Name = "AlbumDetails")]
         public ActionResult Details(int id)
         {
-            var albums = _context.Albums.Include(s => s.Songs).FirstOrDefault(a => a.Id == id);
+            var albums = _albumService.GetAlbum(id);
 
             return View(albums);
         }
