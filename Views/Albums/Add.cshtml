@@ -9,19 +9,21 @@
     </div>
 </div>
 
+@Html.HiddenFor(a => a.Id)
+
 @using (Html.BeginForm("Add", "Albums", new { @class = "form" }))
 {
     <br />
     <div class="form-group">
         <div class="row">
             <div class="col-md-5 col-md-offset-1">
-                @*@Html.LabelFor(n => n., new { @id = "albumLabel" })
-                @Html.TextBoxFor(n => n.Name, new { @class = "form-control", @id = "albumText" })*@
+                @Html.LabelFor(n => n.Albums.Select(a => a.Name), new { @id = "albumLabel" })
+                @Html.TextBoxFor(n => n.Albums.Select(a => a.Name), new { @class = "form-control", @id = "albumText" })
             </div>
             <br />
             <div class="col-md-5 col-md-offset-1">
-                @*@Html.LabelFor(n => n.ArtistImageURL, new { @id = "albumImageLabel" })
-                @Html.TextBoxFor(n => n.ArtistImageURL, new { @class = "form-control", @id = "albumImageText" })*@
+                @Html.LabelFor(n => n.Albums.Select(a => a.AlbumImageURL), new { @id = "albumImageLabel" })
+                @Html.TextBoxFor(n => n.Albums.Select(a => a.AlbumImageURL), new { @class = "form-control", @id = "albumImageText" })
             </div>
         </div>
         <br />
