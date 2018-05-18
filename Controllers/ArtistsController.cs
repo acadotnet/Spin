@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using Spin.Data;
 using Spin.Models;
+using Spin.Services;
+using Spin.Services.Interfaces;
 using Spin.ViewModels;
 
 namespace Spin.Controllers
@@ -13,17 +15,19 @@ namespace Spin.Controllers
     [RoutePrefix("Artists")]
     public class ArtistsController : Controller
     {
-        public SpinContext _context;
+        protected readonly IArtist _artistService;
+        protected readonly SpinContext _context;
 
-        public ArtistsController ()
+        public ArtistsController(IArtist artistService)
         {
             _context = new SpinContext();
+            _artistService = artistService;
         }
         
         [Route("", Name = "AllArtists")]
         public ActionResult Index()
         {
-            var artist = _context.Artists.Include(a => a.Albums.Select(g => g.AlbumGenre.Select(n => n.Genre))).ToList();
+            var artist =_artistService.GetAllArtists();
 
             return View(artist);
         }
@@ -38,28 +42,7 @@ namespace Spin.Controllers
         [Route("Create", Name = "ArtistCreatePost")]
         public ActionResult Create(EditViewModel model)
         {
-            var album = new Album
-            {
-                Name = model.Album.Name,
-                ArtistId = model.Album.Id,
-                AlbumImageURL = model.Album.AlbumImageURL
-            };
-
-            var genre = new Genre
-            {
-                Name = model.Genre.Name
-            };
-
-            var artist = new Artist
-            {
-                Name = model.Artist.Name,
-                ArtistImageURL = model.Artist.ArtistImageURL
-            };
-
-            _context.Artists.Add(artist);
-            _context.Albums.Add(album);
-            _context.Genres.Add(genre);
-            _context.SaveChanges();
+            var artist = _artistService.CreateArtist(model);
 
             return RedirectToRoute("ArtistDetails", new { Id = artist.Id });
         }
