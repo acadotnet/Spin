@@ -9,9 +9,9 @@ namespace Spin.Services.Interfaces
     public interface IAlbum
     {
         IEnumerable<Album> GetAllAlbums();
-        Album GetAlbum(int id);
-        Album AddAlbum(Album album);
-        Album EditAlbum(int id, Album album);
-        Album DeleteAlbum(int id, Album album);
+        Album Get(int id);
+        Album Add(Album album);
+        Album Edit(int id, Album album);
+        void Delete(int id, Album album);
     }
 }

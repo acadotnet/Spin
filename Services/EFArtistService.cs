@@ -19,8 +19,12 @@ namespace Spin.Services
             _spinContext = spinContext;
         }
 
-        public Artist CreateArtist(EditViewModel model)
+        public Artist Create(EditViewModel model)
         {
+            var artistList = _spinContext.Artists.ToList();
+            var albumList = _spinContext.Albums.ToList();
+            var validInput = true;
+
             var album = new Album
             {
                 Name = model.Album.Name,
@@ -39,11 +43,24 @@ namespace Spin.Services
                 ArtistImageURL = model.Artist.ArtistImageURL
             };
 
-            _spinContext.Artists.Add(artist);
-            _spinContext.Albums.Add(album);
-            _spinContext.Genres.Add(genre);
-            _spinContext.SaveChanges();
+            if (artistList.Any(n => n.Id == artist.Id))
+            {
+                validInput = false;
+            }
 
+            if (albumList.Any(a => a.Id == album.Id))
+            {
+                validInput = false;
+            }
+
+            if (validInput)
+            {
+                _spinContext.Artists.Add(artist);
+                _spinContext.Albums.Add(album);
+                _spinContext.Genres.Add(genre);
+                _spinContext.SaveChanges();
+            }
+            
             return artist;
         }
 
@@ -52,7 +69,7 @@ namespace Spin.Services
             return _spinContext.Artists.Include(a => a.Albums.Select(b => b.AlbumGenres.Select(c => c.Genre))).ToList();
         }
 
-        public Artist GetArtist(int id)
+        public Artist Get(int id)
         {
             return _spinContext.Artists.FirstOrDefault(a => a.Id == id);
         }

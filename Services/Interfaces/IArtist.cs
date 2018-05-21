@@ -10,7 +10,7 @@ namespace Spin.Services.Interfaces
     public interface IArtist
     {
         IEnumerable<Artist> GetAllArtists();
-        Artist GetArtist(int id);
-        Artist CreateArtist(EditViewModel model);
+        Artist Get(int id);
+        Artist Create(EditViewModel model);
     }
 }
