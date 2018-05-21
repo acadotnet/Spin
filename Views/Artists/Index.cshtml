@@ -11,7 +11,6 @@
             <tr>
                 <th></th>
                 <th>Artist</th>
-                <th>Genre</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,12 +20,6 @@
                 <tr>
                     <td><img src="@artist.ArtistImageURL" class="img-responsive img-rounded" /></td>
                     <td><a href="@Url.RouteUrl("ArtistDetails", new { id = artist.Id })" class="btn">@artist.Name</a></td>
-                    <td>
-                        @foreach (var genre in artist.Albums.SelectMany(a => a.AlbumGenre.Select(g => g.Genre)))
-                        {
-                            <span>@genre.Name</span>
-                        }
-                    </td>
                     <td><a href="@Url.RouteUrl("ArtistDelete", new { id = artist.Id })" class="btn btn-danger">Delete</a></td>
                 </tr>
             }

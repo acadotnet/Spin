@@ -9,7 +9,6 @@ namespace Spin.Models
     public class Genre
     {
         public int Id { get; set; }
-        //public int AlbumId { get; set; }
         [Required]
         [Display(Name = "Genre Name")]
         public string Name { get; set; }

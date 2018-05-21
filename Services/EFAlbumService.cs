@@ -40,7 +40,7 @@ namespace Spin.Services
 
         public IEnumerable<Album> GetAllAlbums()
         {
-            return _spinContext.Albums.Include(a => a.AlbumGenre.Select(g => g.Genre)).ToList();
+            return _spinContext.Albums.Include(a => a.AlbumGenres.Select(g => g.Genre)).ToList();
         }
     }
 }

@@ -49,7 +49,7 @@ namespace Spin.Services
 
         public IEnumerable<Artist> GetAllArtists()
         {
-            return _spinContext.Artists.Include(a => a.Albums.Select(b => b.AlbumGenre.Select(c => c.Genre))).ToList();
+            return _spinContext.Artists.Include(a => a.Albums.Select(b => b.AlbumGenres.Select(c => c.Genre))).ToList();
         }
 
         public Artist GetArtist(int id)

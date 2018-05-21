@@ -211,6 +211,14 @@
     <Compile Include="Migrations\201805162309439_ImageURLsForArtistAndAlbumsAdded.Designer.cs">
       <DependentUpon>201805162309439_ImageURLsForArtistAndAlbumsAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805211559105_AddingAlbumIdToGenre.cs" />
+    <Compile Include="Migrations\201805211559105_AddingAlbumIdToGenre.Designer.cs">
+      <DependentUpon>201805211559105_AddingAlbumIdToGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805211622450_GeneralFixesToGenre.cs" />
+    <Compile Include="Migrations\201805211622450_GeneralFixesToGenre.Designer.cs">
+      <DependentUpon>201805211622450_GeneralFixesToGenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumGenre.cs" />
@@ -305,6 +313,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805162309439_ImageURLsForArtistAndAlbumsAdded.resx">
       <DependentUpon>201805162309439_ImageURLsForArtistAndAlbumsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805211559105_AddingAlbumIdToGenre.resx">
+      <DependentUpon>201805211559105_AddingAlbumIdToGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805211622450_GeneralFixesToGenre.resx">
+      <DependentUpon>201805211622450_GeneralFixesToGenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

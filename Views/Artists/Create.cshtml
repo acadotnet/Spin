@@ -28,6 +28,17 @@
             <div class="col-md-5 col-md-offset-1">
                 @Html.LabelFor(n => n.Genre.Name, new { @id = "genreLabel" })
                 @Html.TextBoxFor(n => n.Genre.Name, new { @class = "form-control", @id = "genreText" })
+                <div class="dropdown">
+                    <button class="btn btn-success" type="button" id="genreDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Genre
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="genreDropdown">
+                        <li><a href="#">Test</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Test Seperate</a></li>
+                    </ul>
+                </div>
             </div>
             <br />
             <div class="col-md-5 col-md-offset-1">
