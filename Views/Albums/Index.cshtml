@@ -25,7 +25,7 @@
                 <td><img src="@album.AlbumImageURL" class="img-responsive img-rounded" /></td>
                 <td><a href="@Url.RouteUrl("AlbumDetails", new { id = album.Id })">@album.Name</a></td>
                 <td>
-                    @foreach (var genre in album.AlbumGenre)
+                    @foreach (var genre in album.AlbumGenres)
                     {
                         <p>@genre.Genre.Name</p>
                     }
