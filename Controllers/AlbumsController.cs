@@ -59,7 +59,7 @@ namespace Spin.Controllers
         [Route("Details/{id}", Name = "AlbumDetails")]
         public ActionResult Details(int id)
         {
-            var albums = _albumService.GetAlbum(id);
+            var albums = _albumService.Get(id);
 
             return View(albums);
         }
