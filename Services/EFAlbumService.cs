@@ -20,19 +20,41 @@ namespace Spin.Services
 
         public Album Add(Album album)
         {
-            var artist = _spinContext.Artists.FirstOrDefault(a => a.Id == album.ArtistId);
-            var newAlbum = new Album
-            {
-                Id = album.Id,
-                Name = album.Name,
-                Songs = album.Songs,
-                ArtistId = album.ArtistId,
-                AlbumImageURL = album.AlbumImageURL
-            };
-            _spinContext.Albums.Add(newAlbum);
+            _spinContext.Albums.Add(album);
             _spinContext.SaveChanges();
 
-            return newAlbum;
+            return album;
+        }
+
+        public Genre AddGenre(int id, string name)
+        {
+            var existingGenre = _spinContext.Genres.FirstOrDefault(a => a.Name == name);
+
+            if (existingGenre == null)
+            {
+                existingGenre = new Genre
+                {
+                    Name = name
+                };
+                _spinContext.Genres.Add(existingGenre);
+            }
+
+            var album = _spinContext.Albums.Include(b => b.AlbumGenres).FirstOrDefault(a => a.Id == id);
+            
+            if (!album.AlbumGenres.Any(a => a.GenreId == existingGenre.Id))
+            {
+                var model = new AlbumGenre
+                {
+                    AlbumId = album.Id,
+                    GenreId = existingGenre.Id
+                };
+
+                album.AlbumGenres.Add(model);
+            }
+
+            _spinContext.SaveChanges();
+
+            return existingGenre;
         }
 
         public void Delete(int id, Album album)
@@ -42,18 +64,15 @@ namespace Spin.Services
             _spinContext.SaveChanges();
         }
 
-        public Album Edit(int id, Album album)
+        public Album Edit(Album model)
         {
-            var albumToEdit = _spinContext.Albums.FirstOrDefault(a => a.Id == id);
-            var edit = new Album
-            {
-                Id = album.Id,
-                Name = album.Name,
-                Songs = album.Songs,
-                ArtistId = album.ArtistId,
-                AlbumImageURL = album.AlbumImageURL
-            };
-            return edit;
+            var albumToEdit = _spinContext.Albums.FirstOrDefault(a => a.Id == model.Id);
+            albumToEdit.Name = model.Name;
+            albumToEdit.AlbumImageURL = model.AlbumImageURL;
+
+            _spinContext.SaveChanges();
+
+            return albumToEdit;
         }
 
         public Album Get(int id)

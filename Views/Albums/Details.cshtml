@@ -7,6 +7,7 @@
     <div class="col">
         <h1>@Model.Name</h1>
         <a href="@Url.RouteUrl("ArtistDetails", new { id = Model.ArtistId })" class="btn btn-success">Artist Details</a>
+        <a href="@Url.RouteUrl("AddGenre", new { AlbumId = Model.Id })" class="btn btn-success">Add Genre</a>
     </div>
 </div>
 <div class="row">

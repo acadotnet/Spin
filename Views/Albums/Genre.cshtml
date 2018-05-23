@@ -1,0 +1,29 @@
+﻿@model Spin.ViewModels.Albums.AddGenreViewModel
+@{
+    ViewBag.Title = "Genre";
+}
+
+<div class="row">
+    <div class="col">
+        <h2>Add Genre</h2>
+    </div>
+</div>
+
+@using (Html.BeginForm("Genre", "Albums", new { @class = "form" }))
+{
+    @Html.HiddenFor(a => a.AlbumId)
+    <br />
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-1">
+                @Html.LabelFor(a => a.Name, new { @id = "genreLabel" })
+                @Html.TextBoxFor(a => a.Name, new { @class = "form-control", @id = "genreText" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7 col-md-offset-5">
+            <button class="btn btn-primary">Add Genre</button>
+        </div>
+    </div>
+}

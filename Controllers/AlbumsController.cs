@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Spin.Data;
 using Spin.Models;
-using Spin.ViewModels;
+using Spin.ViewModels.Albums;
 using Spin.Services.Interfaces;
 
 namespace Spin.Controllers
@@ -34,26 +34,72 @@ namespace Spin.Controllers
         [Route("Add/{id}", Name = "AddAlbum")]
         public ActionResult Add(int id)
         {
-            var artist = _context.Artists.Include(n => n.Albums).FirstOrDefault(a => a.Id == id);
+            var album = new Album
+            {
+                ArtistId = id
+            };
 
-            return View(artist);
+            return View(album);
         }
 
         [HttpPost]
         [Route("Add/{id}", Name = "AddAlbumPost")]
-        public ActionResult Add(EditViewModel model)
+        public ActionResult Add(Album model)
         {
-            var album = new Album
+            if (!ModelState.IsValid)
             {
-                Name = model.Album.Name,
-                AlbumImageURL = model.Album.AlbumImageURL,
-                ArtistId = model.Artist.Id
+                return View(model);
+            }
+
+            var album = _albumService.Add(model);
+
+            return RedirectToRoute("ArtistDetails", new { id = model.ArtistId });
+        }
+
+        [Route("Edit/{id}", Name = "AlbumEdit")]
+        public ActionResult Edit(int id)
+        {
+            var albumToEdit = _albumService.Get(id);
+
+            return View(albumToEdit);
+        }
+
+        [HttpPost]
+        [Route("Edit/{id}", Name = "AlbumEditPost")]
+        public ActionResult Edit(Album model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var album = _albumService.Edit(model);
+
+            return RedirectToRoute("AlbumDetails", new { id = album.Id });
+        }
+
+        [Route("Genre/{AlbumId}", Name = "AddGenre")]
+        public ActionResult Genre(int AlbumId)
+        {
+            var model = new AddGenreViewModel
+            {
+                AlbumId = AlbumId
             };
 
-            _context.Albums.Add(album);
-            _context.SaveChanges();
+            return View(model);
+        }
 
-            return RedirectToRoute("ArtistDetails", new { id = model.Artist.Id });
+        [HttpPost]
+        [Route("Genre/{id}", Name = "AddGenrePost")]
+        public ActionResult Genre(AddGenreViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var genre = _albumService.AddGenre(model.AlbumId, model.Name);
+
+            return RedirectToRoute("AlbumDetails", new { id = model.AlbumId });
         }
 
         [Route("Details/{id}", Name = "AlbumDetails")]

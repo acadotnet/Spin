@@ -1,38 +1,33 @@
 ﻿@model Spin.Models.Album
 @{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "Edit";
 }
 
 <div class="row">
-    <div class="col">
-        <h2>Add</h2>
+    <div class="col text-center">
+        <h2>@Model.Name</h2>
     </div>
 </div>
 
-@using (Html.BeginForm("Add", "Albums", new { @class = "form" }))
+@using (Html.BeginForm("Edit", "Albums", new { @class = "form" }))
 {
-    @Html.HiddenFor(a => a.ArtistId)
+    @Html.HiddenFor(a => a.Id)
     <br />
     <div class="form-group">
         <div class="row">
             <div class="col-md-5 col-md-offset-1">
                 @Html.LabelFor(n => n.Name, new { @id = "albumLabel" })
-                @Html.TextBoxFor(n => n.Name, new { @class = "form-control", @id = "albumText" })
+                @Html.TextBoxFor(n => n.Name, new { @class = "form-control", @placeholder = "Enter album name", @id = "albumText" })
             </div>
-            <br />
             <div class="col-md-5 col-md-offset-1">
                 @Html.LabelFor(n => n.AlbumImageURL, new { @id = "albumImageLabel" })
                 @Html.TextBoxFor(n => n.AlbumImageURL, new { @class = "form-control", @id = "albumImageText" })
             </div>
         </div>
-        <br />
-        <br />
     </div>
-    <br />
     <div class="row">
         <div class="col-md-7 col-md-offset-5">
-            <button class="btn btn-primary">Add Album</button>
+            <button class="btn btn-primary">Save Changes</button>
         </div>
     </div>
-    <br />
 }
