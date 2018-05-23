@@ -40,9 +40,14 @@ namespace Spin.Controllers
 
         [HttpPost]
         [Route("Create", Name = "ArtistCreatePost")]
-        public ActionResult Create(EditViewModel model)
+        public ActionResult Create(Artist model)
         {
-            var artist = _artistService.CreateArtist(model);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var artist = _artistService.Create(model);
 
             return RedirectToRoute("ArtistDetails", new { Id = artist.Id });
         }
@@ -50,7 +55,7 @@ namespace Spin.Controllers
         [Route("Edit/{id}", Name = "ArtistEdit")]
         public ActionResult Edit(int id)
         {
-            var artistToEdit = _context.Artists.FirstOrDefault(a => a.Id == id);
+            var artistToEdit = _artistService.Get(id);
 
             return View(artistToEdit);
         }
@@ -59,18 +64,14 @@ namespace Spin.Controllers
         [Route("Edit/{id}", Name = "ArtistEditPost")]
         public ActionResult Edit(Artist model)
         {
-            var artist = _context.Artists.FirstOrDefault(c => c.Id == model.Id);
-            if (artist == null)
+            if (!ModelState.IsValid)
             {
                 return HttpNotFound();
             }
 
-            artist.Name = model.Name;
-            artist.ArtistImageURL = model.ArtistImageURL;
+            _artistService.Edit(model);
 
-            _context.SaveChanges();
-
-            return RedirectToRoute("ArtistDetails");
+            return RedirectToRoute("ArtistDetails", new { id = model.Id });
         }
 
         [HttpPost]
@@ -94,8 +95,12 @@ namespace Spin.Controllers
         [Route("Details/{id}", Name = "ArtistDetails")]
         public ActionResult Details(int id)
         {
-            var artist = _context.Artists.FirstOrDefault(a => a.Id == id);
-            var albums = _context.Albums.Where(a => a.ArtistId == id).ToList();
+            if (!ModelState.IsValid)
+            {
+                return View(id);
+            }
+
+            var artist = _artistService.Get(id);
 
             return View(artist);
         }
@@ -103,10 +108,12 @@ namespace Spin.Controllers
         [Route("Delete/{id}", Name = "ArtistDelete")]
         public ActionResult Delete(int id)
         {
-            var artistToDelete = _context.Artists.FirstOrDefault(a => a.Id == id);
+            if (!ModelState.IsValid)
+            {
+                return View(id);
+            }
 
-            _context.Artists.Remove(artistToDelete);
-            _context.SaveChanges();
+            _artistService.Delete(id);
 
             return View();
         }

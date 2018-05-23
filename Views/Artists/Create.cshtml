@@ -1,4 +1,4 @@
-﻿@model Spin.ViewModels.EditViewModel
+﻿@model Spin.Models.Artist
 @{
     ViewBag.Title = "Create";
 }
@@ -15,41 +15,31 @@
     <div class="form-group">
         <div class="row">
             <div class="col-md-5 col-md-offset-1">
-                @Html.LabelFor(n => n.Artist.Name, new { @id = "artistLabel"})
-                @Html.TextBoxFor(n => n.Artist.Name, new { @class = "form-control", @id = "artistText" })
+                @Html.LabelFor(n => n.Name, new { @id = "artistLabel"})
+                @Html.TextBoxFor(n => n.Name, new { @class = "form-control", @id = "artistText" })
+                @Html.ValidationMessageFor(n => n.Name)
             </div>
-            <br />
+            @*<br />
             <div class="col-md-5 col-md-offset-1">
                 @Html.LabelFor(n => n.Album.Name, new { @id = "albumLabel" })
                 @Html.TextBoxFor(n => n.Album.Name, new { @class = "form-control", @id = "albumText" })
-            </div>
-        </div>
+            </div>*@
+        @*</div>
         <div class="row">
             <div class="col-md-5 col-md-offset-1">
                 @Html.LabelFor(n => n.Genre.Name, new { @id = "genreLabel" })
                 @Html.TextBoxFor(n => n.Genre.Name, new { @class = "form-control", @id = "genreText" })
-                <div class="dropdown">
-                    <button class="btn btn-success" type="button" id="genreDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Genre
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="genreDropdown">
-                        <li><a href="#">Test</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Test Seperate</a></li>
-                    </ul>
-                </div>
             </div>
             <br />
             <div class="col-md-5 col-md-offset-1">
                 @Html.LabelFor(n => n.Album.AlbumImageURL, new { @id = "albumImageLabel" })
                 @Html.TextBoxFor(n => n.Album.AlbumImageURL, new { @class = "form-control", @id = "albumImageText" })
             </div>
-        </div>
+        </div>*@
         <div class="row">
             <div class="col-md-5 col-md-offset-1">
-                @Html.LabelFor(n => n.Artist.ArtistImageURL, new { @id = "artistImageLabel" })
-                @Html.TextBoxFor(n => n.Artist.ArtistImageURL, new { @class = "form-control", @id = "artistImageText" })
+                @Html.LabelFor(n => n.ArtistImageURL, new { @id = "artistImageLabel" })
+                @Html.TextBoxFor(n => n.ArtistImageURL, new { @class = "form-control", @id = "artistImageText" })
             </div>
         </div>
         <br />
@@ -58,8 +48,8 @@
                 <form action="@Url.RouteUrl("AddSongAjax", new { id = Model.Songs.Id })" method="post" enctype="multipart/form-data">
                     
                 </form>
-            </div>
-        </div>*@
+            </div>*@
+        </div>
         <br />
     </div>
     <br />

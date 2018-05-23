@@ -11,6 +11,10 @@ namespace Spin.Services.Interfaces
     {
         IEnumerable<Artist> GetAllArtists();
         Artist Get(int id);
-        Artist Create(EditViewModel model);
+        Artist Edit(Artist model);
+        Artist Create(Artist model);
+        void Delete(int id);
+        Genre CreateGenre(string name);
+        bool IsDuplicate(string name);
     }
 }

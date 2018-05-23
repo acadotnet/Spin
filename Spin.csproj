@@ -222,6 +222,7 @@
     <Compile Include="Services\EFArtistService.cs" />
     <Compile Include="Services\Interfaces\IAlbum.cs" />
     <Compile Include="Services\Interfaces\IArtist.cs" />
+    <Compile Include="ViewModels\Albums\AddGenreViewModel.cs" />
     <Compile Include="ViewModels\EditViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
   </ItemGroup>
@@ -277,6 +278,8 @@
     <Content Include="Views\Artists\Delete.cshtml" />
     <Content Include="Views\Artists\Edit.cshtml" />
     <Content Include="Views\Albums\Add.cshtml" />
+    <Content Include="Views\Albums\Edit.cshtml" />
+    <Content Include="Views\Albums\Genre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805091102414_InitialMigration.resx">

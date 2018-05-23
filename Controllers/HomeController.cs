@@ -7,6 +7,7 @@ using Spin.Data;
 using Spin.Models;
 using Spin.ViewModels;
 using Spin.ViewModels.Home;
+using Spin.Services.Interfaces;
 
 namespace Spin.Controllers
 {
@@ -15,22 +16,21 @@ namespace Spin.Controllers
     {
         protected readonly SpinContext _context;
 
-        public HomeController()
+        public HomeController(SpinContext context)
         {
-            _context = new SpinContext();
+            _context = context;
         }
 
 
         public ActionResult Index()
         {
-            var indexViewModel = new IndexViewModel
+            var model = new IndexViewModel
             {
-                RecentArtists = _context.Artists.OrderByDescending(a => a.Id).Take(3).ToList(),
-                RecentAlbums = _context.Albums.OrderByDescending(a => a.Id).Take(3).ToList()
+                RecentAlbums = _context.Albums.OrderByDescending(a => a.Id).Take(3).ToList(),
+                RecentArtists = _context.Artists.OrderByDescending(a => a.Id).Take(3).ToList()
             };
 
-
-            return View(indexViewModel);
+            return View(model);
         }
 
         public ActionResult Albums()
