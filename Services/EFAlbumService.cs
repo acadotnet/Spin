@@ -80,6 +80,17 @@ namespace Spin.Services
             return _spinContext.Albums.Include(s => s.Songs).FirstOrDefault(a => a.Id == id);
         }
 
+        public IEnumerable<Album> GetAlbumsByGenreId(int genreId)
+        {
+            return _spinContext.AlbumGenres
+                .Include(a => a.Album)
+                .Include(g => g.Genre)
+                .Where(z => z.GenreId == genreId)
+                .Select(a => a.Album)
+                .Include(a => a.AlbumGenres.Select(g => g.Genre))
+                .ToList();
+        }
+
         public IEnumerable<Album> GetAllAlbums()
         {
             return _spinContext.Albums.Include(a => a.AlbumGenres.Select(g => g.Genre)).ToList();

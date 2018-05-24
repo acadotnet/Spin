@@ -27,7 +27,7 @@
                     <td>
                         @foreach (var genre in album.AlbumGenres)
                         {
-                            <span class="badge badge-primary">@genre.Genre.Name</span>
+                            <a href="@Url.RouteUrl("AllAlbumsByGenre", new { genreId = genre.GenreId })"><span class="badge">@genre.Genre.Name</span></a>
                         }
                     </td>
                     <td><a href="#" class="btn btn-danger">Delete</a></td>

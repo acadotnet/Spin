@@ -102,6 +102,12 @@ namespace Spin.Controllers
             return RedirectToRoute("AlbumDetails", new { id = model.AlbumId });
         }
 
+        [Route("GenreAlbums", Name = "GenreAlbumDetails")]
+        public ActionResult GenreAlbums()
+        {
+            return View();
+        }
+
         [Route("Details/{id}", Name = "AlbumDetails")]
         public ActionResult Details(int id)
         {
