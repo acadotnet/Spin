@@ -10,7 +10,7 @@
 </div>
 
 <div class="row" id="MainIndexRow">
-    <div class="col-md-6 text-center">
+    <div class="col-md-4 text-center">
         <h2>Recent artists</h2>
         @foreach (var artist in Model.RecentArtists)
         {
@@ -18,7 +18,14 @@
         }
         <p><a class="btn btn-default" href="@Url.RouteUrl("AllArtists")">Explore All Artists</a></p>
     </div>
-    <div class="col-md-6 text-center">
+    <div class="col-md-4 text-center">
+        <h2>Genres</h2>
+        @foreach (var genre in Model.Genres)
+        {
+            <span><a class="btn btn-default" href="@Url.RouteUrl("AllAlbumsByGenre", new { genreId = genre.Id })">@genre.Name</a></span>
+        }
+    </div>
+    <div class="col-md-4 text-center">
         <h2>Recent Albums</h2>
         @foreach (var album in Model.RecentAlbums)
         {
