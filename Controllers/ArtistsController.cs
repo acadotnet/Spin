@@ -9,6 +9,7 @@ using Spin.Models;
 using Spin.Services;
 using Spin.Services.Interfaces;
 using Spin.ViewModels;
+using Spin.ViewModels.Artists;
 
 namespace Spin.Controllers
 {
@@ -95,14 +96,27 @@ namespace Spin.Controllers
         [Route("Details/{id}", Name = "ArtistDetails")]
         public ActionResult Details(int id)
         {
-            if (!ModelState.IsValid)
+            var artist = _artistService.Get(id);
+            var genreList = new List<Genre>();
+            //var genres = artist.Albums.Select(a => a.AlbumGenres.Select(b => b.Genre).Distinct()).Distinct().ToList();
+            foreach (var album in artist.Albums)
             {
-                return View(id);
+                foreach (var albumGenre in album.AlbumGenres)
+                {
+                    if (genreList.Any(a => a.Name == albumGenre.Genre.Name))
+                    {
+                        genreList.Add(albumGenre.Genre);
+                    }
+                }
             }
 
-            var artist = _artistService.Get(id);
+            var model = new ArtistsDetailsViewModel
+            {
+                Artist = artist,
+                Genres = genreList
+            };
 
-            return View(artist);
+            return View(model);
         }
 
         [Route("Delete/{id}", Name = "ArtistDelete")]

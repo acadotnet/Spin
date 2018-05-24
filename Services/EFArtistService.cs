@@ -26,7 +26,9 @@ namespace Spin.Services
 
         public Artist Get(int id)
         {
-            return _spinContext.Artists.Include(a => a.Albums).FirstOrDefault(a => a.Id == id);
+            return _spinContext.Artists
+                .Include(a => a.Albums.Select(b => b.AlbumGenres.Select(c => c.Genre)))
+                .FirstOrDefault(a => a.Id == id);
         }
 
         public Artist Edit(Artist model)

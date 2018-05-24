@@ -1,12 +1,11 @@
-﻿@model Spin.Models.Artist
+﻿@model Spin.ViewModels.Artists.ArtistsDetailsViewModel
 @{
     ViewBag.Title = "Details";
 }
 
-@Html.HiddenFor(a => a.Id)
 <div class="row">
     <div class="col text-center">
-        <h1><em>@Model.Name</em></h1>
+        <h1><em>@Model.Artist.Name</em></h1>
         <a href="@Url.RouteUrl("ArtistEdit")" class="btn btn-success">Edit Artist</a>
     </div>
 </div>
@@ -19,23 +18,30 @@
                 <th></th>
                 <th>Name</th>
                 <th>Action</th>
+                <th>Genre</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                @foreach (var album in Model.Albums)
-                {
+            @foreach (var album in Model.Artist.Albums)
+            {
+                <tr>
                     <td><img src="@album.AlbumImageURL" class="img-responsive img-rounded" /></td>
                     <td><a href="@Url.RouteUrl("AlbumDetails", new { id = album.Id })">@album.Name</a></td>
                     <td>
                         <a href="@Url.RouteUrl("AlbumEdit", new { id = album.Id })" class="btn btn-success">Edit Album</a>
-                        <a href="@Url.RouteUrl("AlbumEdit")" class="btn btn-success">Add Genre</a>
+                        <a href="@Url.RouteUrl("AddGenre", new { AlbumId = album.Id })" class="btn btn-success">Add Genre</a>
                     </td>
-                }
-            </tr>
+                    @foreach (var genre in album.AlbumGenres)
+                    {
+                        <td>
+                            <a href="@Url.RouteUrl("AllAlbumsByGenre", new { genreId = genre.GenreId })"><span class="badge">@genre.Genre.Name</span></a>
+                        </td>
+                    }
+                </tr>
+            }
         </tbody>
         <tfoot>
-            <a href="@Url.RouteUrl("AddAlbum", new { id = Model.Id })" class="btn btn-success">Add Album</a>
+            <a href="@Url.RouteUrl("AddAlbum", new { id = Model.Artist.Id })" class="btn btn-success">Add Album</a>
         </tfoot>
     </table>
 </div>
