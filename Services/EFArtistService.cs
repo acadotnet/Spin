@@ -70,7 +70,12 @@ namespace Spin.Services
 
         public Artist Create(Artist model)
         {
-            _spinContext.Artists.Add(model);
+            var existingArtist = _spinContext.Artists.FirstOrDefault(a => a.Name == model.Name);
+            if (existingArtist == null)
+            {
+                _spinContext.Artists.Add(model);
+            }
+            
             _spinContext.SaveChanges();
 
             return model;
