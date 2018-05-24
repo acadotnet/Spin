@@ -1,0 +1,38 @@
+﻿@model List<Spin.Models.Album>
+@{
+    ViewBag.Title = "Albums";
+}
+
+<div class="row">
+    <div class="col">
+        <h2>Albums By Genre</h2>
+    </div>
+</div>
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Album</th>
+                <th>Genre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var album in Model)
+            {
+                <tr>
+                    <td><img src="@album.AlbumImageURL" class="img-responsive img-rounded" /></td>
+                    <td><a href="@Url.RouteUrl("AlbumDetails", new { id = album.Id })">@album.Name</a></td>
+                    <td>
+                        @foreach (var genre in album.AlbumGenres)
+                        {
+                            <a href="@Url.RouteUrl("AllAlbumsByGenre", new { genreId = genre.GenreId })"><span class="badge">@genre.Genre.Name</span></a>
+                        }
+                    </td>
+                    <td><a href="#" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
