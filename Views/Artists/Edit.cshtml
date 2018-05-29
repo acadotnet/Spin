@@ -11,6 +11,9 @@
 
 @using (Html.BeginForm("Edit", "Artists", new { @class = "form" }))
 {
+
+    @Html.AntiForgeryToken()
+
     <br />
     <div class="form-group">
         <div class="row">

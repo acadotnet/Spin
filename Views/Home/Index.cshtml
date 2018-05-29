@@ -22,7 +22,7 @@
         <h2>Genres</h2>
         @foreach (var genre in Model.Genres)
         {
-            <span><a class="btn btn-default" href="@Url.RouteUrl("AllAlbumsByGenre", new { genreId = genre.Id })">@genre.Name</a></span>
+            <a class="badge font-size-h2 badge-primary" href="@Url.RouteUrl("AllAlbumsByGenre", new { genreId = genre.Id })">@genre.Name</a>
         }
     </div>
     <div class="col-md-4 text-center">

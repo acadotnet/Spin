@@ -25,6 +25,12 @@
                 @Html.TextBoxFor(n => n.AlbumImageURL, new { @class = "form-control", @id = "albumImageText" })
             </div>
         </div>
+        @*<div class="row">
+            <div class="col-md">
+                <form action="@Url.RouteUrl("", new { id = Model.Id })" method="post" enctype="multipart/form-data"></form>
+                @Html.TextBoxFor(a => a.Songs, new { @class = "form-control", type = "file", accept = "*" })
+            </div>
+        </div>*@
         <br />
         <br />
     </div>

@@ -9,6 +9,7 @@ using Spin.Data;
 using Spin.Models;
 using Spin.ViewModels.Albums;
 using Spin.Services.Interfaces;
+using System.IO;
 
 namespace Spin.Controllers
 {
@@ -114,6 +115,14 @@ namespace Spin.Controllers
             var albums = _albumService.Get(id);
 
             return View(albums);
+        }
+
+        [HttpPost]
+        public ActionResult ReadFile(Album model)
+        {
+            //var fileStream = new StreamReader();
+
+            return View();
         }
         
         [HttpPost]

@@ -62,6 +62,7 @@ namespace Spin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("Edit/{id}", Name = "ArtistEditPost")]
         public ActionResult Edit(Artist model)
         {

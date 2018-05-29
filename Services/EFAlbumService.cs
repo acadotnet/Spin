@@ -79,7 +79,7 @@ namespace Spin.Services
         {
             return _spinContext.Albums.Include(s => s.Songs).FirstOrDefault(a => a.Id == id);
         }
-
+        
         public IEnumerable<Album> GetAlbumsByGenreId(int genreId)
         {
             return _spinContext.AlbumGenres
