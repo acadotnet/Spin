@@ -15,40 +15,17 @@
     <div class="form-group">
         <div class="row">
             <div class="col-md-5 col-md-offset-1">
-                @Html.LabelFor(n => n.Name, new { @id = "artistLabel"})
+                @Html.LabelFor(n => n.Name, new { @id = "artistLabel" })
                 @Html.TextBoxFor(n => n.Name, new { @class = "form-control", @id = "artistText" })
                 @Html.ValidationMessageFor(n => n.Name)
             </div>
-            @*<br />
-            <div class="col-md-5 col-md-offset-1">
-                @Html.LabelFor(n => n.Album.Name, new { @id = "albumLabel" })
-                @Html.TextBoxFor(n => n.Album.Name, new { @class = "form-control", @id = "albumText" })
-            </div>*@
-        @*</div>
-        <div class="row">
-            <div class="col-md-5 col-md-offset-1">
-                @Html.LabelFor(n => n.Genre.Name, new { @id = "genreLabel" })
-                @Html.TextBoxFor(n => n.Genre.Name, new { @class = "form-control", @id = "genreText" })
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                    @Html.LabelFor(n => n.ArtistImageURL, new { @id = "artistImageLabel" })
+                    @Html.TextBoxFor(n => n.ArtistImageURL, new { @class = "form-control", @id = "artistImageText" })
+                </div>
             </div>
             <br />
-            <div class="col-md-5 col-md-offset-1">
-                @Html.LabelFor(n => n.Album.AlbumImageURL, new { @id = "albumImageLabel" })
-                @Html.TextBoxFor(n => n.Album.AlbumImageURL, new { @class = "form-control", @id = "albumImageText" })
-            </div>
-        </div>*@
-        <div class="row">
-            <div class="col-md-5 col-md-offset-1">
-                @Html.LabelFor(n => n.ArtistImageURL, new { @id = "artistImageLabel" })
-                @Html.TextBoxFor(n => n.ArtistImageURL, new { @class = "form-control", @id = "artistImageText" })
-            </div>
-        </div>
-        <br />
-        @*<div class="row">
-            <div class="col-md-5 col-md-offset-1">
-                <form action="@Url.RouteUrl("AddSongAjax", new { id = Model.Songs.Id })" method="post" enctype="multipart/form-data">
-                    
-                </form>
-            </div>*@
         </div>
         <br />
     </div>

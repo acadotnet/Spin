@@ -28,8 +28,8 @@
                     <td><img src="@album.AlbumImageURL" class="img-responsive img-rounded" /></td>
                     <td><a href="@Url.RouteUrl("AlbumDetails", new { id = album.Id })">@album.Name</a></td>
                     <td>
-                        <a href="@Url.RouteUrl("AlbumEdit", new { id = album.Id })" class="btn btn-success">Edit Album</a>
-                        <a href="@Url.RouteUrl("AddGenre", new { AlbumId = album.Id })" class="btn btn-success">Add Genre</a>
+                        <a href="@Url.RouteUrl("AlbumEdit", new { id = album.Id })" class="btn btn-primary">Edit Album</a>
+                        <a href="@Url.RouteUrl("AddGenre", new { AlbumId = album.Id })" class="btn btn-primary">Add Genre</a>
                     </td>
                     @foreach (var genre in album.AlbumGenres)
                     {
@@ -41,7 +41,7 @@
             }
         </tbody>
         <tfoot>
-            <a href="@Url.RouteUrl("AddAlbum", new { id = Model.Artist.Id })" class="btn btn-success">Add Album</a>
+            <a href="@Url.RouteUrl("AddAlbum", new { id = Model.Artist.Id })" class="btn btn-primary">Add Album</a>
         </tfoot>
     </table>
 </div>

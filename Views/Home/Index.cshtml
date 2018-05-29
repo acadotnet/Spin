@@ -2,35 +2,47 @@
 @{
     ViewBag.Title = "Home";
 }
-
-<div class="jumbotron text-center">
-    <h1>Spin</h1>
-    <p class="lead">The best place for your favorite artists</p>
-    <a href="@Url.RouteUrl("CreateArtist")" class="btn btn-success">Add An Artist Now!</a>
-</div>
-
-<div class="row" id="MainIndexRow">
-    <div class="col-md-4 text-center">
-        <h2>Recent artists</h2>
-        @foreach (var artist in Model.RecentArtists)
-        {
-            <p><a href="@Url.RouteUrl("ArtistDetails", new { id = artist.Id })">@artist.Name</a></p>
-        }
-        <p><a class="btn btn-default" href="@Url.RouteUrl("AllArtists")">Explore All Artists</a></p>
+<div class="container" id="homeIndex">
+    <div class="jumbotron text-center">
+        <h1>Spin</h1>
+        <p class="lead">The best place for your favorite artists</p>
+        <a href="@Url.RouteUrl("CreateArtist")" class="btn btn-primary">Add An Artist Now!</a>
     </div>
-    <div class="col-md-4 text-center">
-        <h2>Genres</h2>
-        @foreach (var genre in Model.Genres)
-        {
-            <a class="badge font-size-h2 badge-primary" href="@Url.RouteUrl("AllAlbumsByGenre", new { genreId = genre.Id })">@genre.Name</a>
-        }
+
+    <div class="row" id="MainIndexRow">
+        <div class="col-md-6 text-center">
+            <h2>Recent artists</h2>
+            @foreach (var artist in Model.RecentArtists)
+            {
+                <p><a href="@Url.RouteUrl("ArtistDetails", new { id = artist.Id })">@artist.Name</a></p>
+            }
+            <p><a class="btn btn-primary" href="@Url.RouteUrl("AllArtists")">Explore All Artists</a></p>
+        </div>
+        <div class="col-md-6 text-center">
+            <h2>Recent Albums</h2>
+            @foreach (var album in Model.RecentAlbums)
+            {
+                <p><a href="@Url.RouteUrl("AlbumDetails", new { id = album.Id })">@album.Name</a></p>
+            }
+            <p><a class="btn btn-primary" href="@Url.RouteUrl("AllAlbums")">Explore All Albums</a></p>
+        </div>
     </div>
-    <div class="col-md-4 text-center">
-        <h2>Recent Albums</h2>
-        @foreach (var album in Model.RecentAlbums)
-        {
-            <p><a href="@Url.RouteUrl("AlbumDetails", new { id = album.Id })">@album.Name</a></p>
-        }
-        <p><a class="btn btn-default" href="@Url.RouteUrl("AllAlbums")">Explore All Albums</a></p>
+    <div class="row" id="secondHomeRow">
+        <div class="col-md-4 text-center">
+            <h1>Genres</h1>
+            @foreach (var genre in Model.Genres)
+            {
+                <h3><a href="@Url.RouteUrl("AllAlbumsByGenre", new { genreId = genre.Id })">@genre.Name</a></h3>
+            }
+        </div>
+        <div class="col-md-8 jumbotron text-center" id="introParagraph">
+            <p>
+                Spin is a place for you to put your favorite artists. With all the music available it's so easy
+                to forget artists that you love. We're here to make sure that doesn't happen. Add your favorite
+                artists with your favorite picture of them. You can add your favorite albums by them and your favorite
+                songs. If you decide that an artist is no longer your favorite you can also delete them from your list.
+                Thank you for visiting and we hope you enjoy.
+            </p>
+        </div>
     </div>
 </div>

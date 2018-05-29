@@ -16,13 +16,13 @@
     </div>
 </div>
 <div class="row">
-    <div class="panel panel-success">
+    <div class="panel panel-primary">
         <div id="trackList" class="panel-body">
         </div>
         <div class="panel-footer">
             <input id="songName" class="form-control" type="text" placeholder="Song name"/>
             <input id="songLength" class="form-control" type="text" placeholder="Song length"/>
-            <button id="addTrack" class="btn btn-success">Add Song</button>
+            <button id="addTrack" class="btn btn-primary">Add Song</button>
         </div>
     </div>
 </div>
@@ -41,10 +41,8 @@
 
         $('.delete-hobby').click(function () {
             var songsId = $(this).data("songs-id");
-
-            // Call Ajax method with songId
+            
             $.ajax({
-                // Delete song from controller (server)
                 url: '@Url.RouteUrl("DeleteSongAjax")',
                 method: 'post',
                 data: {
@@ -53,9 +51,7 @@
                     SongLength: $('#songLength').val()
                 },
                 success: function (data) {
-                    // Toastr a success or error message
                     toastr.success("Song Deleted")
-                    // Remove the element from HTML markup
                     ul.remove("<li class=\"list-group-item\">" + data.Name + ' : ' + data.SongLength + "</li>");
                 },
                 error: function (data) {
