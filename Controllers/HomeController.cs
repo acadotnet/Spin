@@ -30,6 +30,7 @@ namespace Spin.Controllers
             {
                 RecentAlbums = _context.Albums.OrderByDescending(a => a.Id).Take(3).ToList(),
                 RecentArtists = _context.Artists.OrderByDescending(a => a.Id).Take(3).ToList(),
+                Videos = _context.Videos.OrderByDescending(a => a.Id).Take(3).ToList(),
                 Genres = _context.Genres.OrderByDescending(a => a.Id).Take(genreCount).ToList()
             };
 

@@ -10,7 +10,7 @@ namespace Spin.Services.Interfaces
     {
         IEnumerable<Album> GetAllAlbums();
         Album Get(int id);
-        Album Add(Album album);
+        Album Add(Album model);
         Genre AddGenre(int id, string name);
         IEnumerable<Album> GetAlbumsByGenreId(int genreId);
         Album Edit(Album model);

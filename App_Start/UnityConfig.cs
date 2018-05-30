@@ -48,6 +48,7 @@ namespace Spin
             container
                 .RegisterType<IArtist, EFArtistService>()
                 .RegisterType<IAlbum, EFAlbumService>()
+                .RegisterType<IVideo, EFVideoService>()
                 .RegisterType<SpinContext>();
         }
     }

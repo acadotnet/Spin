@@ -8,7 +8,7 @@
         <h2>Add Video</h2>
     </div>
 </div>
-@using (Html.BeginForm("Video", "Artists", new { @class = "form" }))
+@using (Html.BeginForm("Add", "Videos", new { @class = "form" }))
 {
     @Html.HiddenFor(a => a.ArtistId)
 
@@ -30,4 +30,3 @@
         </div>
     </div>
 }
-

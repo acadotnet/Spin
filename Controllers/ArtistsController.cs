@@ -76,28 +76,6 @@ namespace Spin.Controllers
             return RedirectToRoute("ArtistDetails", new { id = model.Id });
         }
 
-        [Route("Video/{id}", Name = "AddVideo")]
-        public ActionResult Video(int id)
-        {
-            var artist = _artistService.Get(id);
-
-            return View(artist);
-        }
-
-        [HttpPost]
-        [Route("Video/{id}", Name = "AddVideoPost")]
-        public ActionResult Video(Video model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var video = _artistService.CreateVideo(model.ArtistId, model.Name, model.Url); 
-
-            return RedirectToRoute("ArtistDetails", new { id = video.ArtistId });
-        }
-
         [HttpPost]
         [Route("AddSong/{id}", Name = "AddSongAjax")]
         public JsonResult AddSong(Songs model)

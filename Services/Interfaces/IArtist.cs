@@ -15,7 +15,6 @@ namespace Spin.Services.Interfaces
         Artist Create(Artist model);
         void Delete(int id);
         Genre CreateGenre(string name);
-        Video CreateVideo(int artistId, string name, string url);
         bool IsDuplicate(string name);
     }
 }

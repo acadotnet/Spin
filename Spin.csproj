@@ -174,7 +174,7 @@
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\VideoController.cs" />
+    <Compile Include="Controllers\VideosController.cs" />
     <Compile Include="Data\SpinContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -233,8 +233,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EFAlbumService.cs" />
     <Compile Include="Services\EFArtistService.cs" />
+    <Compile Include="Services\EFVideoService.cs" />
     <Compile Include="Services\Interfaces\IAlbum.cs" />
     <Compile Include="Services\Interfaces\IArtist.cs" />
+    <Compile Include="Services\Interfaces\IVideo.cs" />
     <Compile Include="ViewModels\Albums\AddGenreViewModel.cs" />
     <Compile Include="ViewModels\Artists\AddVideoViewModel.cs" />
     <Compile Include="ViewModels\Artists\ArtistsDetailsViewModel.cs" />
@@ -297,8 +299,8 @@
     <Content Include="Views\Albums\Edit.cshtml" />
     <Content Include="Views\Albums\Genre.cshtml" />
     <Content Include="Views\Genres\Albums.cshtml" />
-    <Content Include="Views\Artists\Video.cshtml" />
-    <Content Include="Views\Video\Index.cshtml" />
+    <Content Include="Views\Videos\Index.cshtml" />
+    <Content Include="Views\Videos\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805091102414_InitialMigration.resx">
