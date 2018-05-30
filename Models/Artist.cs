@@ -15,30 +15,21 @@ namespace Spin.Models
         [Display(Name = "Artist Image Url")]
         public string ArtistImageURL { get; set; }
         public ICollection<Album> Albums { get; set; }
+        public ICollection<Video> Videos { get; set; }
 
-
-
+        
         //public void DoStuff(bool IsOk, int? theNumber)
         //{
-
         //}
-
         //public void DoStuff2(bool IsOk, int theNumber = 1)
         //{
         //    var myOutput = true;
         //    var doStuff = DetermineIfInt("", out myOutput);
         //}
-
         //public int DetermineIfInt(string potentialNumber, out bool isValid)
         //{
         //    isValid = false;
         //    return 0;
         //}
-
-
-
-
-
-
     }
 }

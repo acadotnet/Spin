@@ -11,5 +11,6 @@ namespace Spin.ViewModels.Home
         public List<Artist> RecentArtists { get; set; }
         public List<Album> RecentAlbums { get; set; }
         public List<Genre> Genres { get; set; }
+        public List<Video> Videos { get; set; }
     }
 }

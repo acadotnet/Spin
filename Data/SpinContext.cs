@@ -19,6 +19,7 @@ namespace Spin.Data
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<Genre> Genres { get; set; }
+        public DbSet<Video> Videos { get; set; }
         public DbSet<Songs> Songs { get; set; }
         public DbSet<AlbumGenre> AlbumGenres { get; set; }
 

@@ -68,6 +68,21 @@ namespace Spin.Services
             return genre;
         }
 
+        public Video CreateVideo(int artistId, string name, string url)
+        {
+            var video = new Video
+            {
+                Name = name,
+                ArtistId = artistId,
+                Url = url
+            };
+
+            _spinContext.Videos.Add(video);
+            _spinContext.SaveChanges();
+
+            return video;
+        }
+
         public Artist Create(Artist model)
         {
             var existingArtist = _spinContext.Artists.FirstOrDefault(a => a.Name == model.Name);

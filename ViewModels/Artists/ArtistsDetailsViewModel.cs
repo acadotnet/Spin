@@ -10,5 +10,6 @@ namespace Spin.ViewModels.Artists
     {
         public Artist Artist { get; set; }
         public IEnumerable<Genre> Genres { get; set; }
+        public IEnumerable<Video> Videos { get; set; }
     }
 }
