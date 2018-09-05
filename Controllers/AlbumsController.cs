@@ -54,6 +54,10 @@ namespace Spin.Controllers
 
             var album = _albumService.Add(model);
 
+            TempData["Success"] = $"{album.Name} was created";
+
+            var b = Request.Browser;
+
             return RedirectToRoute("ArtistDetails", new { id = model.ArtistId });
         }
 
@@ -120,7 +124,7 @@ namespace Spin.Controllers
         [HttpPost]
         public ActionResult ReadFile(Album model)
         {
-            //var fileStream = new StreamReader();
+            var fileStream = new StreamReader();
 
             return View();
         }

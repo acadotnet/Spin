@@ -20,8 +20,8 @@
         <div id="trackList" class="panel-body">
         </div>
         <div class="panel-footer">
-            <input id="songName" class="form-control" type="text" placeholder="Song name"/>
-            <input id="songLength" class="form-control" type="text" placeholder="Song length"/>
+            <input id="songName" class="form-control" type="text" placeholder="Song name" />
+            <input id="songLength" class="form-control" type="text" placeholder="Song length" />
             <button id="addTrack" class="btn btn-primary">Add Song</button>
         </div>
     </div>
@@ -41,7 +41,7 @@
 
         $('.delete-hobby').click(function () {
             var songsId = $(this).data("songs-id");
-            
+
             $.ajax({
                 url: '@Url.RouteUrl("DeleteSongAjax")',
                 method: 'post',
@@ -81,4 +81,4 @@
             })
         })
     </script>
-    }
+}

@@ -50,6 +50,8 @@ namespace Spin.Controllers
 
             var artist = _artistService.Create(model);
 
+            TempData["Success"] = $"{artist.Name} was created";
+
             return RedirectToRoute("ArtistDetails", new { Id = artist.Id });
         }
 
